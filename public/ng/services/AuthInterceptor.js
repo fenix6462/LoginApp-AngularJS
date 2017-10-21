@@ -2,6 +2,7 @@ angular.module('loginapp').factory('AuthInterceptor', function($location, $injec
     return {
         response: function(response) {
             if (response.status === 401) {
+                localStorage.removeItem('token');
                 $location.path('/login');
                 return $q.reject(response);
             }
@@ -10,6 +11,7 @@ angular.module('loginapp').factory('AuthInterceptor', function($location, $injec
 
         responseError: function(rejection) {
             if (rejection.status === 401) {
+                localStorage.removeItem('token');
                 $location.path('/login');
                 return $q.reject(rejection);
             }

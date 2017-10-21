@@ -6,16 +6,20 @@
 				<div class="col-md-6 mx-auto">
 					<span class="anchor" id="formLogin"></span>
 					
-					<div class="alert alert-danger" role="alert" ng-show="errorMessage.length > 0">
-						{{ errorMessage }}
-					</div>
-
 					<!-- form card login -->
 					<div class="card rounded-0">
 						<div class="card-header">
-							<h3 class="mb-0">Login</h3>
+							<div class="row align-items-center">
+								<div class="col-6">
+									<h3 class="mb-0">Login</h3>
+								</div>
+								<div class="col-6 text-right">
+									<loader align="right" ng-show="isLoading"></loader>
+								</div>
+							</div>
 						</div>
 						<div class="card-body">
+							<alert ng-if="info.message" message="{{ info.message }}" type="{{ info.type }}"></alert>
 							<form class="loginForm" role="form" name="loginForm" ng-submit="!loginForm.$invalid && login()" novalidate autocomplete="off">
 								<div class="form-group">
 									<label for="email">Email</label>
@@ -35,7 +39,14 @@
 									  <span class="custom-control-description small">Remember me on this computer</span>
 									</label>
 								</div> -->
-								<button type="submit" class="btn btn-success btn-lg float-right">Login</button>
+								<div class="row align-items-center">
+									<div class="col-6">
+										<button type="submit" class="btn btn-success btn-lg">Login</button>
+									</div>
+									<div class="col-6 text-right">
+										<a href="/register">Or Register</a>
+									</div>
+								</div>
 							</form>
 						</div>
 						<!--/card-block-->

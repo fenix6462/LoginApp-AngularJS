@@ -1,13 +1,16 @@
-angular.module('loginapp').controller('LoginController', function($scope, $http, $location, $window) {
+angular.module('loginapp').controller('RegisterController', function($scope, $http, $location, $window) {
 
 	$scope.user = {};
-	$scope.isLoading = false;
-	$scope.info = {};
+	$scope.isLoading = true;
+	$scope.info = {
+		message: '',
+		type: ''
+	}
 
-	$scope.login = function() {
+	$scope.register = function() {
 		$scope.info = {};
 		$scope.isLoading = true;
-		$http.post('/api/auth/login', { email: $scope.email, password: $scope.password }).then(function(response){
+		$http.post('/api/auth/register', $scope.user).then(function(response){
 			if (response.data.token) {
 				// store email and token in local storage to keep user logged in between page refreshes
 				localStorage.setItem('token', response.data.token);

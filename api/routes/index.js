@@ -16,6 +16,7 @@ router
 //Api route
 router
   .route('/profile')
-  .get(authenticationController.requireAuth, profileController.getProfile);
+  .get(authenticationController.requireAuth, profileController.getProfile)
+  .put(authenticationController.requireAuth, profileController.updateProfile);
 
 module.exports = router;

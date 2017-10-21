@@ -69,8 +69,8 @@ module.exports.login = function(req,res,next){
 
 module.exports.register = function(req,res,next){
 	var email = req.body.email;
-	var firstName = req.body.firstName;
-	var lastName = req.body.lastName;
+	var firstName = req.body.profile && req.body.profile.firstName;
+	var lastName = req.body.profile && req.body.profile.lastName;
 	var password = req.body.password;
 
 	// Return error if no email provided
@@ -79,9 +79,9 @@ module.exports.register = function(req,res,next){
 	}
 
 	// Return error if full name not provided
-	if (!firstName || !lastName) {
-		return res.status(422).send({ error: 'You must enter your full name.'});
-	}
+	// if (!firstName || !lastName) {
+	// 	return res.status(422).send({ error: 'You must enter your full name.'});
+	// }
 
 	// Return error if no password provided
 	if (!password) {

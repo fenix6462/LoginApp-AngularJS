@@ -33,12 +33,16 @@
 					<li class="nav-item active" ng-show="!isLoggedIn">
 						<a class="nav-link" href="/login">Zaloguj <span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item" ng-show="isLoggedIn">
-						<a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+					<li class="nav-item dropdown" ng-show="isLoggedIn">
+						<a class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							{{ currentUser.email }}
+						</a>
+						<div class="dropdown-menu" aria-labelledby="profileDropdown">
+							<a class="dropdown-item" href="/profile">Profile</a>
+							<a class="dropdown-item" ng-click="logout()">Logout</a>
+						</div>
 					</li>
-					<li class="nav-item" ng-show="isLoggedIn">
-						<a class="nav-link" ng-click="logout()">Logout <span class="sr-only">(current)</span></a>
-					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -67,9 +71,13 @@
 	<script src="/ng/services/AuthenticationService.js"></script>
 	<script src="/ng/services/AuthInterceptor.js"></script>
 
+	<script src="/ng/directives/LoaderDirective.js"></script>
+	<script src="/ng/directives/AlertDirective.js"></script>
+
 	<script src="/ng/controllers/AppController.js"></script>
 	<script src="/ng/controllers/HomeController.js"></script>
 	<script src="/ng/controllers/LoginController.js"></script>
+	<script src="/ng/controllers/RegisterController.js"></script>
 	<script src="/ng/controllers/ProfileController.js"></script>
 
 </body>

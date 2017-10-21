@@ -20,7 +20,12 @@ angular.module('loginapp', ['ui.router', 'ngStorage'])
 		})
 		.state('login', {
 			url: '/login',
-			templateUrl: 'views/login/index.html',
+			templateUrl: 'views/auth/login.html',
 			controller: 'LoginController'
+		})
+		.state('register', {
+			url: '/register',
+			templateUrl: 'views/auth/register.html',
+			controller: 'RegisterController'
 		});
 })

@@ -1,4 +1,4 @@
-angular.module('loginapp').factory('AuthenticationService', function($http, $localStorage, $window, $location) {
+angular.module('loginapp').factory('AuthenticationService', function($http, $window, $location) {
 	
 	return {
 		getToken: getToken,
@@ -8,7 +8,7 @@ angular.module('loginapp').factory('AuthenticationService', function($http, $loc
 	};
 
     function getToken() {
-		return $localStorage.currentUser && $localStorage.currentUser.token;
+		return localStorage.getItem('token');
 	};
 
 	function isLoggedIn(){
@@ -42,7 +42,7 @@ angular.module('loginapp').factory('AuthenticationService', function($http, $loc
 	
 	function Logout() {
 		// remove user from local storage and clear http auth header
-		delete $localStorage.currentUser;
+		localStorage.removeItem('token');
 		$http.defaults.headers.common.Authorization = '';
 		$location.path('/login');
 	}

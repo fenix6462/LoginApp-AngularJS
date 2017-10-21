@@ -1,4 +1,4 @@
-angular.module('loginapp').controller('AppController', function($scope, $rootScope, $localStorage, $location, $http, AuthenticationService) {
+angular.module('loginapp').controller('AppController', function($scope, $rootScope, $location, $http, AuthenticationService) {
 
 
 	
@@ -9,10 +9,8 @@ angular.module('loginapp').controller('AppController', function($scope, $rootSco
 		if ($scope.currentUser) {
 			$http.defaults.headers.common.Authorization = AuthenticationService.getToken();
 		}
-		
-		debugger;
 
-		var publicPages = ['/login'];
+		var publicPages = ['/login', '/register'];
 		var authPages = ['/login', '/register'];
 		var restrictedPage = publicPages.indexOf($location.path()) === -1;
 		var authPage = authPages.indexOf($location.path()) > -1;
