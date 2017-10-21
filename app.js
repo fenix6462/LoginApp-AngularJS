@@ -1,11 +1,12 @@
 // Importing Node modules and initializing Express
 var express = require('express');
 var app = express();
+var path = require('path');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var config = require('./config/main');
-var router = require('./router');
+var routes = require('./api/routes');
 
 // Database Connection
 var connection = mongoose.connect(config.database);
@@ -25,7 +26,7 @@ var server = app.listen(config.port, function(){
 
 app.use(bodyParser.urlencoded({ extended: false }));  
 app.use(bodyParser.json());  
-app.use(logger('dev')); // Log requests to API using morgan
+//app.use(logger('dev')); // Log requests to API using morgan
 
 // Setting up basic middleware for all Express requests
 
@@ -38,4 +39,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-router(app);
+// Add some routing
+app.use('/api', routes);
+
+// Set static directory before defining routes
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/assets', express.static(path.join(__dirname, 'node_modules')));
+app.get('/*', function(req, res){
+    res.sendFile(__dirname + '/public/index.html');
+});
