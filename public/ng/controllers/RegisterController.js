@@ -1,13 +1,16 @@
 angular.module('loginapp').controller('RegisterController', function($scope, $http, $location, $window) {
 
 	$scope.user = {};
-	$scope.isLoading = true;
+	$scope.isLoading = false;
 	$scope.info = {
 		message: '',
 		type: ''
 	}
 
 	$scope.register = function() {
+		if($scope.isLoading){
+			return;
+		}
 		$scope.info = {};
 		$scope.isLoading = true;
 		$http.post('/api/auth/register', $scope.user).then(function(response){

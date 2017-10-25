@@ -12,8 +12,8 @@ body {
 
 .spinner {
     animation: rotate 2s linear infinite;
-    width: 30px;
-    height: 30px;
+    width: 23px;
+    height: 23px;
 }
 
 .spinner .path {

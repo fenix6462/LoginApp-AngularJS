@@ -1,5 +1,4 @@
 var jwt = require('jsonwebtoken');
-var crypto = require('crypto');
 var User = require('../models/user.model');
 var config = require('../../config/main');
 

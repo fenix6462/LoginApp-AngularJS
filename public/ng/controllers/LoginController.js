@@ -5,6 +5,9 @@ angular.module('loginapp').controller('LoginController', function($scope, $http,
 	$scope.info = {};
 
 	$scope.login = function() {
+		if($scope.isLoading){
+			return;
+		}
 		$scope.info = {};
 		$scope.isLoading = true;
 		$http.post('/api/auth/login', { email: $scope.email, password: $scope.password }).then(function(response){

@@ -1,4 +1,4 @@
-angular.module('loginapp', ['ui.router', 'ngStorage'])
+angular.module('loginapp', ['ui.router', 'ui.router.state.events'])
 .config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider, $urlMatcherFactoryProvider){
 	
 	$httpProvider.interceptors.push('AuthInterceptor');
@@ -27,5 +27,15 @@ angular.module('loginapp', ['ui.router', 'ngStorage'])
 			url: '/register',
 			templateUrl: 'views/auth/register.html',
 			controller: 'RegisterController'
+		})
+		.state('forgot', {
+			url: '/forgot',
+			templateUrl: 'views/auth/forgot.html',
+			controller: 'ForgotController'
+		})
+		.state('reset', {
+			url: '/reset/:token',
+			templateUrl: 'views/auth/reset.html',
+			controller: 'ResetController'
 		});
 })

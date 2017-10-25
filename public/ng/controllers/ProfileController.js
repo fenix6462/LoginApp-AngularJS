@@ -20,6 +20,9 @@ angular.module('loginapp').controller('ProfileController', function($scope, $htt
 	})
 
 	$scope.edit = function(){
+		if($scope.isLoading){
+			return;
+		}
 		$scope.info = {};
 		$scope.isLoading = true;
 		$http.put('/api/profile', $scope.user).then(function(response){
